@@ -125,7 +125,7 @@ cd expense-tracker
 cd server
 npm install
 cp .env.example .env       # then fill in your own MONGO_URI and JWT_SECRET
-npm run dev                # starts on http://localhost:5000
+npm run dev                # starts on http://localhost:5001
 ```
 
 ### 3. Frontend setup
@@ -133,7 +133,7 @@ Open a second terminal:
 ```bash
 cd client
 npm install
-cp .env.example .env       # VITE_API_URL=http://localhost:5000/api
+cp .env.example .env       # VITE_API_URL=http://localhost:5001/api
 npm run dev                # starts on http://localhost:5173
 ```
 
@@ -146,7 +146,7 @@ Visit `http://localhost:5173`, sign up for a new account, and start tracking!
 
 **server/.env**
 ```
-PORT=5000
+PORT=5001
 NODE_ENV=development
 MONGO_URI=your_mongodb_atlas_connection_string_here
 JWT_SECRET=replace_with_a_long_random_string
@@ -156,7 +156,7 @@ CLIENT_URL=http://localhost:5173
 
 **client/.env**
 ```
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:5001/api
 ```
 
 > ⚠️ Never commit real `.env` files. Only `.env.example` files are tracked in git.
@@ -165,7 +165,7 @@ VITE_API_URL=http://localhost:5000/api
 
 ## 📡 API Documentation
 
-Base URL (local): `http://localhost:5000/api`
+Base URL (local): `http://localhost:5001/api`
 
 ### Auth
 | Method | Endpoint | Access | Description |

@@ -20,7 +20,7 @@ export const getApiErrorMessage = (error, fallback = "Something went wrong") => 
 // env variables so it can point at localhost in dev and the deployed
 // Render URL in production.
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5001/api",
   withCredentials: true,
 });
 
