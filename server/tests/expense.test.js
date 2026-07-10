@@ -1,6 +1,6 @@
 const request = require("supertest");
-const mongoose = require("mongoose");
 const app = require("../server");
+const { disconnectDB } = require("../config/db");
 
 describe("Expense API", () => {
   const testUser = {
@@ -17,7 +17,7 @@ describe("Expense API", () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
+    await disconnectDB();
   });
 
   it("should reject requests without a token", async () => {

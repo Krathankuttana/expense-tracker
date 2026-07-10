@@ -1,10 +1,9 @@
 const request = require("supertest");
-const mongoose = require("mongoose");
 const app = require("../server");
+const { disconnectDB } = require("../config/db");
 
-// NOTE: These tests expect a TEST MongoDB URI in process.env.MONGO_URI
-// (see .env.example). Run with: npm test
-// It's recommended to point MONGO_URI at a separate test database/cluster.
+// If MONGO_URI is not configured, tests use the local in-memory MongoDB fallback.
+// For shared environments, point MONGO_URI at a separate test database/cluster.
 
 describe("Auth API", () => {
   const testUser = {
@@ -14,7 +13,7 @@ describe("Auth API", () => {
   };
 
   afterAll(async () => {
-    await mongoose.connection.close();
+    await disconnectDB();
   });
 
   it("should sign up a new user", async () => {
