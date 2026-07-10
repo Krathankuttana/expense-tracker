@@ -1,5 +1,21 @@
 import axios from "axios";
 
+export const getApiErrorMessage = (error, fallback = "Something went wrong") => {
+  const data = error.response?.data;
+
+  if (data?.message && Array.isArray(data.errors) && data.errors.length > 0) {
+    return data.errors.map((item) => item.message).join(", ");
+  }
+
+  if (data?.message) return data.message;
+
+  if (error.code === "ERR_NETWORK") {
+    return "Cannot reach the server. Check that the backend is running and VITE_API_URL is correct.";
+  }
+
+  return fallback;
+};
+
 // Base axios instance shared by all services. baseURL comes from Vite's
 // env variables so it can point at localhost in dev and the deployed
 // Render URL in production.

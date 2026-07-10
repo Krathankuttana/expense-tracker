@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import { getApiErrorMessage } from "../services/api";
 
 const Signup = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
@@ -27,7 +28,7 @@ const Signup = () => {
       toast.success("Account created successfully!");
       navigate("/dashboard");
     } catch (err) {
-      toast.error(err.response?.data?.message || "Signup failed");
+      toast.error(getApiErrorMessage(err, "Signup failed"));
     } finally {
       setLoading(false);
     }
